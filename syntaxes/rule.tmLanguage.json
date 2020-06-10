@@ -266,7 +266,7 @@
 		"functions": {
 			"patterns": [{
 				"name": "support.function.healthbot",
-				"match": "\\b(matches-with|min-rate-of-increase|increasing-at-least-by-value)\\b"
+				"match": "\\b(greater-than-or-equal-to|greater-than|not-equal-to|equal-to|increasing-at-least-by-value|increasing-at-most-by-value|increasing-at-least-by-rate|increasing-at-most-by-rate|matches-with|min-rate-of-increase|max-rate-of-increase|increasing-at-least-by-value|less-than|less-than-or-equal-to|range|exists|does-not-match-with)\\b"
 			}]
 		},
 		"conditionals": {
@@ -277,7 +277,7 @@
 		},
 		"attributes": {
 			"name": "support.type.attribute-name",
-			"match": "\\b(file|table-name|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message)\\b"
+			"match": "^\\s*\\b(file|table-name|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message|list-of-files)\\b"
 		},
 		"strings": {
 			"name": "string.quoted.double.healthbot",
