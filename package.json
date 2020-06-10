@@ -6,7 +6,26 @@
  "engines": {
   "vscode": "^1.43.0"
  },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/shashankv02/healthbot-vscode"
+ },
+ "scripts": {
+  "vscode:prepublish": "npm run webpack",
+  "webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
+  "webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js",
+  "compile": "tsc -b",
+  "compile:client": "tsc -b ./client/tsconfig.json",
+  "compile:server": "tsc -b ./server/tsconfig.json",
+  "watch": "tsc -b -w",
+  "lint": "npm run lint:client && npm run lint:server",
+  "lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
+  "lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
+  "clean": "rimraf client/out && rimraf server/out",
+  "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
+ },
  "publisher": "vshashank",
+ "logo": "img/logo.png",
  "categories": [
   "Programming Languages",
   "Snippets"
@@ -15,7 +34,7 @@
   "onLanguage:HealthBot",
   "onCommand:healthbot.validate"
  ],
- "main": "./client/out/extension",
+ "main": "./dist/extension",
  "contributes": {
   "languages": [
    {
@@ -75,10 +94,15 @@
  },
  "devDependencies": {
   "@types/mocha": "^5.2.7",
-  "mocha": "^6.2.2",
   "@types/node": "^12.12.0",
-  "eslint": "^6.4.0",
   "@typescript-eslint/parser": "^2.3.0",
-  "typescript": "^3.9.4"
+  "eslint": "^6.4.0",
+  "ts-loader": "^7.0.5",
+  "typescript": "^3.9.4",
+  "webpack": "^4.43.0",
+  "webpack-cli": "^3.3.11"
+ },
+ "dependencies": {
+  "merge-options": "^2.0.0"
  }
 }

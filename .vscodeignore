@@ -1,3 +1,9 @@
 .vscode/**
 .vscode-test/**
 .gitignore
+node_modules
+out/
+client
+server
+tsconfig.json
+webpack.config.js
