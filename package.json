@@ -1,7 +1,7 @@
 {
  "name": "healthbot",
- "displayName": "vscode extension for HealthBot",
- "description": "Extension adds syntax highlighting, auto-completion snippetx and syntax validation for HealthBot Rules and Playbooks",
+ "displayName": "HealthBot",
+ "description": "Extension adds syntax highlighting, auto-completion snippets and syntax validation for HealthBot Rules and Playbooks",
  "version": "0.0.1",
  "engines": {
   "vscode": "^1.43.0"
@@ -10,6 +10,7 @@
   "type": "git",
   "url": "https://github.com/shashankv02/healthbot-vscode"
  },
+ "keywords": ["healthbot", "juniper"],
  "scripts": {
   "vscode:prepublish": "npm run webpack",
   "webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
@@ -25,7 +26,7 @@
   "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
  },
  "publisher": "vshashank",
- "logo": "img/logo.png",
+ "icon": "img/logo.png",
  "categories": [
   "Programming Languages",
   "Snippets"
