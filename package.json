@@ -35,7 +35,7 @@
   "onLanguage:HealthBot",
   "onCommand:healthbot.validate"
  ],
- "main": "./dist/extension",
+ "main": "./client/out/extension",
  "contributes": {
   "languages": [
    {
