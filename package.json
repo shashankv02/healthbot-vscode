@@ -1,8 +1,8 @@
 {
  "name": "healthbot",
  "displayName": "HealthBot",
- "description": "Extension adds syntax highlighting, auto-completion snippets and syntax validation for HealthBot Rules and Playbooks",
- "version": "0.0.1",
+ "description": "Extension adds syntax highlighting, auto-completion and syntax validation for HealthBot Rules and Playbooks",
+ "version": "0.0.4",
  "engines": {
   "vscode": "^1.43.0"
  },
