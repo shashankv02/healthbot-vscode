@@ -1,0 +1,351 @@
+{
+	"New Rule": {
+		"scope": "",
+		"prefix": "healthbot",
+		"body": [
+			"healthbot {",
+			"\ttopic ${1:topic-name} {",
+			"\t\trule ${2:rule-name} {",
+            "\t\t\tkeys [ ${3:keys} ];",
+            "\t\t\tsynopsis \"${4}\";",
+            "\t\t\tdescription \"${5}\";",
+
+            "\t\t\tsensor ${6:sensor-name} {",
+            "\t\t\t\t${7:sensor}",
+            "\t\t\t}",
+
+            "\t\t\t${8:field}",
+            "\t\t\t${9:trigger}",
+            "\t\t\t${10:variable}",
+            "\t\t\t${11:rule-properties}",
+
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "}"
+
+		]
+    },
+
+    "New iAgent Sensor": {
+        "scope": "",
+        "prefix": ["iAgent", "sensor"],
+        "description": "iAgent sensor",
+        "body": [
+            "iAgent {",
+            "\tfile ${1:file-name};",
+            "\ttable ${2:table-name};",
+            "\tfrequency ${3:60s};",
+            "}"
+        ]
+    },
+    "New OC Sensor": {
+        "scope": "",
+        "prefix": ["open-config", "sensor"],
+        "description": "Open Config sensor",
+        "body": [
+            "open-config {",
+            "    sensor-name ${1:/interfaces/};",
+            "    frequency ${2:30s;}",
+            "}"
+        ]
+    },
+
+    "New snmp sensor": {
+        "scope": "",
+        "prefix": ["snmp", "sensor"],
+        "description": "SNMP sensor",
+        "body": [
+            "snmp {",
+            "    table-name ${1:BGP4-MIB::bgpPeerTable};",
+            "    frequency ${2:180s;}",
+            "}"
+        ]
+    },
+    "String field type": {
+        "scope": "",
+        "prefix": ["type"],
+        "description": "string field type",
+        "body": "type string;"
+
+    },
+    "Integer field type": {
+        "scope": "",
+        "prefix": ["type"],
+        "description": "integer field type",
+        "body": "type integer;"
+
+    },
+    "Float field type": {
+        "scope": "",
+        "prefix": ["type"],
+        "description": "float field type",
+        "body": "type float;"
+
+    },
+    "New Field": {
+        "scope": "",
+        "prefix": "field",
+        "body": [
+            "field ${1:field-name} {",
+            "\tsensor ${2:sensor-name} {",
+            "\t\tpath ${3:path};",
+            "\t\t${4:type}",
+            "\t\tdescription \"${5}\";",
+            "}"
+        ]
+    },
+    "New Trigger": {
+        "scope": "",
+        "prefix": "trigger",
+        "description": "New trigger",
+        "body": [
+            "trigger ${1:trigger-name} {",
+            "\tfrequency ${2:90s};",
+            "\t${3:term}",
+            "}"
+        ]
+    },
+
+    "Term type greater-than": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type greater-than-or-equal-to": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type less-than": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type less-than-or-equal-to": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type equal-to": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type not-equal-to": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type matches-with": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type does-not-match-with": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type range": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type exists": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type min-rate-of-increase": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type max-rate-of-increase ": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type increasing-at-least-by-value": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type increasing-at-most-by-value": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type increasing-at-least-by-rate": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+    "Term type increasing-at-most-by-rate": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+
+        ]
+    },
+
+    "New Term": {
+        "scope": "",
+        "prefix": "term",
+        "description": "New term",
+        "body": [
+            "term ${1:term-name} {",
+            "\twhen {",
+            "\t\t${2:matches-with} ${3};",
+            "}",
+            "\tthen {",
+            "\t\tstatus {",
+            "\t\t\tcolor ${4:red};",
+            "\t\t\tmessage \"${5}\";",
+            "\t\t}",
+            "\t}",
+            "}"
+        ]
+    },
+    "New Status": {
+        "scope": "",
+        "prefix": "status",
+        "description": "New status",
+        "body": [
+            "status {",
+            "\tcolor ${2:red};",
+            "\tmessage \"${3}\";",
+            "}"
+        ]
+    },
+    "New Variable": {
+        "scope": "",
+        "prefix": "variable",
+        "description": "New variable",
+        "body": [
+            "variable ${1:variable-name} {",
+            "\tvalue ${2:value};",
+            "\tdescription \"${3:}\";",
+            "\ttype ${4:string};",
+            "}"
+        ]
+    },
+    "Release-support max-supported-release": {
+        "scope": "",
+        "prefix": "release-support",
+        "description": "max-supported-release",
+        "body": [
+           "release-support max-supported-release;"
+        ]
+    },
+    "Release-support only-on-this-release": {
+        "scope": "",
+        "prefix": "release-support",
+        "description": "only-on-this-release",
+        "body": [
+           "release-support only-on-this-release;"
+        ]
+    },
+    "Release-support min-supported-release": {
+        "scope": "",
+        "prefix": "release-support",
+        "description": "min-supported-release",
+        "body": [
+           "release-support min-supported-release;"
+        ]
+    },
+    "New Releases": {
+        "scope": "",
+        "prefix": "releases",
+        "body": [
+            "releases ${1:17.2R1} {",
+            "\t{2:release-support}",
+            "\tplatform [${3}];",
+            "}"
+        ]
+
+    },
+    "New Products": {
+        "scope": "",
+        "prefix": "products",
+        "body": [
+            "products ${1:PTX} {",
+            "\t${2:releases}"
+        ]
+    },
+    "Rule Properties": {
+        "scope": "",
+        "prefix": "rule-properties",
+        "body": [
+            "rule-properties {",
+            "\tversion ${1:1};",
+            "\tcontributor ${2:juniper};",
+            "\tsupported-healthbot-version ${3:3.0.0};",
+            "\tsupported-devices {",
+            "\t\tjuniper {",
+            "\t\t\toperating-system junos {",
+            "\t\t\t\tproducts ${4:SRX} {",
+            "\t\t\t\t\treleases ${5:15.1R1} {",
+            "\t\t\t\t\t\t${6:release-support}",
+            "\t\t\t\t\t\tplatform ${7:QFX};",
+            "\t\t\t\t\t}",
+            "\t\t\t\t}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "\thelper-files other {",
+            "\t\tlist-of-files [${8}];",
+            "\t}",
+            "}"
+
+        ]
+    }
+
+}

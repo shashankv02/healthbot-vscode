@@ -1,0 +1,33 @@
+{
+    "name": "healthbot-rule-syntax",
+    "displayName": "HealthBot Rule Syntax",
+    "description": "Support for HealthBot Rules and Playbooks",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.45.0"
+    },
+    "publisher": "vshashank",
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "HealthBot",
+            "aliases": ["HealthBot", "rule"],
+            "extensions": [".rule",".playbook"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "HealthBot",
+            "scopeName": "source.healthbot",
+            "path": "./syntaxes/rule.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+              "language": "HealthBot",
+              "path": "./snippets/snippets.json"
+            }
+          ]
+    }
+}

@@ -1,0 +1,304 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "HealthBot",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#variable"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#deprecated"
+		},
+		{
+			"include": "#attributes"
+		},
+		{
+			"include": "#topic"
+		},
+		{
+			"include": "#sensor"
+		},
+		{
+			"include": "#rule"
+		},
+		{
+			"include": "#field"
+		},
+		{
+			"include": "#trigger"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#term"
+		},
+		{
+			"include": "#operating-system"
+		},
+		{
+			"include": "#products"
+		},
+		{
+			"include": "#releases"
+		},
+		{
+			"include": "#vendors"
+		},
+		{
+			"include": "#conditionals"
+		},
+		{
+			"include": "#files"
+		}
+	],
+	"repository": {
+		"topic": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(topic)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.topic"
+					},
+					"2": {
+						"name": "entity.name.type.topic"
+					}
+				}
+			}]
+		},
+		"sensor": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(sensor)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.sensor"
+					},
+					"2": {
+						"name": "entity.name.type.sensor"
+					}
+				}
+			}]
+		},
+		"rule": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(rule)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.sensor"
+					},
+					"2": {
+						"name": "entity.name.type.healthbot"
+					}
+				}
+			}]
+		},
+		"field": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(field)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.sensor"
+					},
+					"2": {
+						"name": "entity.name.type.field"
+					}
+				}
+			}]
+		},
+		"constants": {
+			"patterns": [{
+				"name": "constant.language",
+				"match":  "\\b(zero-suppression)\\b"
+			}]
+		},
+		"trigger": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(trigger)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.sensor"
+					},
+					"2": {
+						"name": "entity.name.type.trigger"
+					}
+				}
+			}]
+		},
+		"term": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(term)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.sensor"
+					},
+					"2": {
+						"name": "entity.name.type.term"
+					}
+				}
+			}]
+		},
+		"variable": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(variable)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "storage.type.variable"
+					},
+					"2": {
+						"name": "variable.parameter"
+					}
+				}
+			}]
+		},
+		"operating-system": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(operating-system)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.os"
+					}
+				}
+			}]
+		},
+		"products": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(products)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.product"
+					}
+				}
+			}]
+		},
+		"releases": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(releases)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.release"
+					}
+				}
+			}]
+		},
+		"files": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(helper-files)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.helper-files"
+					}
+				}
+			},
+			{
+				"name": "meta.entity.name",
+				"match":  "\\b(list-of-files)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.list-of-files"
+					}
+				}
+			}]
+		},
+
+		"vendors": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"begin":  "\\b(other-vendor)\\s+(.*)\\b",
+				"end": "}",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.release"
+					}
+				},
+				"patterns": [{
+					"name": "support.type.attribute-name",
+					"match": "\\b(vendor-name|operating-system)\\b"
+				}]
+			}]
+		},
+
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.other.healthbot",
+				"match": "\\b(healthbot|rule-properties|supported-devices|juniper|status|constant|open-config|iAgent|snmp)\\b"
+			}]
+		},
+		"functions": {
+			"patterns": [{
+				"name": "support.function.healthbot",
+				"match": "\\b(matches-with|min-rate-of-increase|increasing-at-least-by-value)\\b"
+			}]
+		},
+		"conditionals": {
+			"patterns": [{
+				"name": "keyword.control.healthbot",
+				"match": "\\b(where|when|then)\\b"
+			}]
+		},
+		"attributes": {
+			"name": "support.type.attribute-name",
+			"match": "\\b(file|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message)\\b"
+		},
+		"strings": {
+			"name": "string.quoted.double.healthbot",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.healthbot",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.block.documentation.healthbot",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		"deprecated": {
+			"name": "invalid.deprecated",
+			"match": "\\b(min-rate-of-increase)\\b"
+		}
+	},
+	"scopeName": "source.healthbot"
+}
