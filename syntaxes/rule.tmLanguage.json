@@ -277,7 +277,7 @@
 		},
 		"attributes": {
 			"name": "support.type.attribute-name",
-			"match": "\\b(file|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message)\\b"
+			"match": "\\b(file|table-name|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message)\\b"
 		},
 		"strings": {
 			"name": "string.quoted.double.healthbot",
@@ -291,9 +291,17 @@
 			]
 		},
 		"comments": {
-			"name": "comment.block.documentation.healthbot",
-			"begin": "/\\*",
-			"end": "\\*/"
+			"patterns": [
+				{
+					"name": "comment.block.documentation.healthbot",
+					"begin": "/\\*",
+					"end": "\\*/"
+				},
+				{
+					"name": "comment.line.number-sign.healthbot",
+					"match": "\\s*#.*"
+				}
+			]
 		},
 		"deprecated": {
 			"name": "invalid.deprecated",

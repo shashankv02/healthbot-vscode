@@ -19,7 +19,6 @@
             "\t\t\t${10:variable}",
             "\t\t\t${11:rule-properties}",
 
-            "\t\t\t}",
             "\t\t}",
             "\t}",
             "}"
@@ -46,7 +45,7 @@
         "body": [
             "open-config {",
             "    sensor-name ${1:/interfaces/};",
-            "    frequency ${2:30s;}",
+            "    frequency ${2:30s};",
             "}"
         ]
     },
@@ -58,7 +57,7 @@
         "body": [
             "snmp {",
             "    table-name ${1:BGP4-MIB::bgpPeerTable};",
-            "    frequency ${2:180s;}",
+            "    frequency ${2:180s};",
             "}"
         ]
     },
@@ -83,16 +82,62 @@
         "body": "type float;"
 
     },
+    "New Constant": {
+        "scope": "",
+        "prefix": ["constant"],
+        "description": "Field value from constant",
+        "body": [
+            "constant {",
+            "\tvalue \"${1}\";",
+            "}"
+        ]
+    },
+    "Field Source Constant": {
+        "scope": "",
+        "prefix": ["reference-of-field"],
+        "description": "Constant field",
+        "body": [
+            "constant {",
+            "\tvalue \"${1}\";",
+            "}"
+        ]
+    },
+    "Field Source Sensor": {
+        "scope": "",
+        "prefix": ["reference-of-field"],
+        "description": "Sensor field",
+        "body": [
+            "sensor ${1:sensor-name} {",
+            "\tpath ${2:path};",
+            "\t${3:zero-suppression}",
+            "}"
+        ]
+    },
     "New Field": {
         "scope": "",
         "prefix": "field",
         "body": [
             "field ${1:field-name} {",
-            "\tsensor ${2:sensor-name} {",
-            "\t\tpath ${3:path};",
-            "\t\t${4:type}",
-            "\t\tdescription \"${5}\";",
+            "\t${2:reference-of-field}",
+            "\t${3:type}",
+            "\tdescription: \"${4}\";",
             "}"
+        ]
+    },
+    "Zero-suppression On": {
+        "scope": "",
+        "prefix": "zero-suppression",
+        "description": "Enable zero-suppression",
+        "body": [
+            "zero-suppression;"
+        ]
+    },
+    "Zero-suppression Off": {
+        "scope": "",
+        "prefix": "zero-suppression",
+        "description": "Disable zero-suppression",
+        "body": [
+            ""
         ]
     },
     "New Trigger": {
@@ -101,138 +146,345 @@
         "description": "New trigger",
         "body": [
             "trigger ${1:trigger-name} {",
-            "\tfrequency ${2:90s};",
-            "\t${3:term}",
+            "\tsynopsis: \"${2}\"",
+            "\tdescription: \"${3}\"",
+            "\tfrequency ${4:90s};",
+            "\t${5:term}",
             "}"
         ]
     },
 
-    "Term type greater-than": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function greater-than-or-equal-to": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "greater-than-or-equal-to",
+        "body": [
+            "greater-than-or-equal-to \"${1}\" \"${2}\" {",
+            "\ttime-range ${3:180s};",
+            "}"
         ]
     },
-    "Term type greater-than-or-equal-to": {
+    "Term function greater-than-or-equal-to": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "greater-than-or-equal-to",
+        "description": "greater-than-or-equal-to term function",
         "body": [
-
+            "greater-than-or-equal-to \"${1}\" \"${2}\"{",
+            "\ttime-range ${3:180s}",
+            "}"
         ]
     },
-    "Term type less-than": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function greater-than": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "greater-than",
+        "body": [
+            "greater-than \"${1}\" \"${2}\";"
         ]
     },
-    "Term type less-than-or-equal-to": {
+    "Term function greater-than": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "greater-than",
+        "description": "greater-than",
         "body": [
-
+            "greater-than \"${1}\" \"${2}\";"
         ]
     },
-    "Term type equal-to": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function less-than": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "less-than",
+        "body": [
+            "less-than \"${1}\" \"${2}\";"
         ]
     },
-    "Term type not-equal-to": {
+    "Term function less-than": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "less-than",
+        "description": "less-than",
         "body": [
-
+            "less-than \"${1}\" \"${2}\";"
         ]
     },
-    "Term type matches-with": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function less-than-or-equal-to": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "less-than-or-equal-to",
+        "body": [
+            "less-than-or-equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type does-not-match-with": {
+    "Term function less-than-or-equal-to": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "less-than-or-equal-to",
+        "description": "less-than-or-equal-to",
         "body": [
-
+            "less-than-or-equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type range": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+    "Select function equal-to": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "equal-to",
+        "body": [
+            "equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type exists": {
+    "Term function equal-to": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "equal-to",
+        "description": "equal-to",
         "body": [
-
+            "equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type min-rate-of-increase": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+    "Select function not-equal-to": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "not-equal-to",
+        "body": [
+            "not-equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type max-rate-of-increase ": {
+    "Term function not-equal-to": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "not-equal-to",
+        "description": "not-equal-to",
         "body": [
-
+            "not-equal-to \"${1}\" \"${2}\";"
         ]
     },
-    "Term type increasing-at-least-by-value": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function matches-with": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "matches-with",
+        "body": [
+            "matches-with \"${1}\" \"${2}\";"
         ]
     },
-    "Term type increasing-at-most-by-value": {
+    "Term function matches-with": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "matches-with",
+        "description": "matches-with",
         "body": [
-
+            "matches-with \"${1}\" \"${2}\";"
         ]
     },
-    "Term type increasing-at-least-by-rate": {
-        "scope": "",
-        "prefix": "term",
-        "description": "New term",
-        "body": [
 
+
+    "Select function does-not-match-with": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "does-not-match-with",
+        "body": [
+            "does-not-match-with \"${1}\" \"${2}\";"
         ]
     },
-    "Term type increasing-at-most-by-rate": {
+    "Term function does-not-match-with": {
         "scope": "",
-        "prefix": "term",
-        "description": "New term",
+        "prefix": "does-not-match-with",
+        "description": "does-not-match-with",
         "body": [
+            "does-not-match-with \"${1}\" \"${2}\";"
+        ]
+    },
 
+
+    "Select function range": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "range",
+        "body": [
+            "range \"${1}\" {",
+            "\tmin ${2};",
+            "\tmax ${3};",
+            "\ttime-range ${4:1m};",
+            "}"
+        ]
+    },
+    "Term function range": {
+        "scope": "",
+        "prefix": "range",
+        "description": "range",
+        "body": [
+            "range \"${1}\" {",
+            "\tmin ${2};",
+            "\tmax ${3};",
+            "\ttime-range ${4:1m};",
+            "}"
+        ]
+    },
+
+
+    "Select function exists": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "exists",
+        "body": [
+            "exists \"${1}\";"
+        ]
+    },
+    "Term function exists": {
+        "scope": "",
+        "prefix": "exists",
+        "description": "exists",
+        "body": [
+            "exists \"${1}\";"
+        ]
+    },
+
+
+    "Select function min-rate-of-increase": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "min-rate-of-increase",
+        "body": [
+            "min-rate-of-increase \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range ${3:5m};",
+            "}"
+        ]
+    },
+    "Term function min-rate-of-increase": {
+        "scope": "",
+        "prefix": "min-rate-of-increase",
+        "description": "min-rate-of-increase",
+        "body": [
+            "min-rate-of-increase \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range ${3:5m};",
+            "}"
+        ]
+    },
+
+
+    "Select function max-rate-of-increase": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "max-rate-of-increase",
+        "body": [
+            "max-rate-of-increase \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range ${3:5m};",
+            "}"
+        ]
+    },
+    "Term function max-rate-of-increase": {
+        "scope": "",
+        "prefix": "max-rate-of-increase",
+        "description": "max-rate-of-increase",
+        "body": [
+            "max-rate-of-increase \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range ${3:5m};",
+            "}"
+        ]
+    },
+
+
+    "Select function increasing-at-most-by-value": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "increasing-at-most-by-value",
+        "body": [
+            "increasing-at-most-by-value \"${1}\" {",
+            "\tvalue \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+    "Term function increasing-at-most-by-value": {
+        "scope": "",
+        "prefix": "increasing-at-most-by-value",
+        "description": "increasing-at-most-by-value",
+        "body": [
+            "increasing-at-most-by-value \"${1}\" {",
+            "\tvalue \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+
+
+    "Select function increasing-at-least-by-value": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "increasing-at-least-by-value",
+        "body": [
+            "increasing-at-least-by-value \"${1}\" {",
+            "\tvalue \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+    "Term function increasing-at-least-by-value": {
+        "scope": "",
+        "prefix": "increasing-at-least-by-value",
+        "description": "increasing-at-least-by-value",
+        "body": [
+            "increasing-at-least-by-value \"${1}\" {",
+            "\tvalue \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+
+
+    "Select function increasing-at-least-by-rate": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "increasing-at-least-by-rate",
+        "body": [
+            "increasing-at-least-by-rate \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+    "Term function increasing-at-least-by-rate": {
+        "scope": "",
+        "prefix": "increasing-at-least-by-rate",
+        "description": "increasing-at-least-by-rate",
+        "body": [
+            "increasing-at-least-by-rate \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+
+    "Select function increasing-at-most-by-rate": {
+        "scope": "",
+        "prefix": "select-function",
+        "description": "increasing-at-most-by-rate",
+        "body": [
+            "increasing-at-most-by-rate \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
+        ]
+    },
+    "Term function increasing-at-most-by-rate": {
+        "scope": "",
+        "prefix": "increasing-at-most-by-rate",
+        "description": "increasing-at-most-by-rate",
+        "body": [
+            "increasing-at-most-by-rate \"${1}\" {",
+            "\trate \"${2}\";",
+            "\ttime-range \"${3:200s}\";",
+            "}"
         ]
     },
 
@@ -243,12 +495,12 @@
         "body": [
             "term ${1:term-name} {",
             "\twhen {",
-            "\t\t${2:matches-with} ${3};",
-            "}",
+            "\t\t${2:select-function}",
+            "\t}",
             "\tthen {",
             "\t\tstatus {",
-            "\t\t\tcolor ${4:red};",
-            "\t\t\tmessage \"${5}\";",
+            "\t\t\tcolor ${3:red};",
+            "\t\t\tmessage \"${4}\";",
             "\t\t}",
             "\t}",
             "}"
@@ -273,7 +525,7 @@
             "variable ${1:variable-name} {",
             "\tvalue ${2:value};",
             "\tdescription \"${3:}\";",
-            "\ttype ${4:string};",
+            "\t${4:type}",
             "}"
         ]
     },
@@ -306,7 +558,7 @@
         "prefix": "releases",
         "body": [
             "releases ${1:17.2R1} {",
-            "\t{2:release-support}",
+            "\t${2:release-support}",
             "\tplatform [${3}];",
             "}"
         ]
@@ -316,10 +568,12 @@
         "scope": "",
         "prefix": "products",
         "body": [
-            "products ${1:PTX} {",
-            "\t${2:releases}"
+            "products ${1:MX} {",
+            "\t${2:releases}",
+            "}"
         ]
     },
+
     "Rule Properties": {
         "scope": "",
         "prefix": "rule-properties",
@@ -331,12 +585,7 @@
             "\tsupported-devices {",
             "\t\tjuniper {",
             "\t\t\toperating-system junos {",
-            "\t\t\t\tproducts ${4:SRX} {",
-            "\t\t\t\t\treleases ${5:15.1R1} {",
-            "\t\t\t\t\t\t${6:release-support}",
-            "\t\t\t\t\t\tplatform ${7:QFX};",
-            "\t\t\t\t\t}",
-            "\t\t\t\t}",
+            "\t\t\t\t${4:products}",
             "\t\t\t}",
             "\t\t}",
             "\t}",
