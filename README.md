@@ -1,3 +1,3 @@
 ## Features
 
-Syntax highlighting and auto completion for HealthBot rules and playbooks.
+Syntax highlighting, auto completion and synatx validation or HealthBot rules and playbooks.

@@ -1,33 +1,84 @@
 {
-    "name": "healthbot-rule-syntax",
-    "displayName": "HealthBot Rule Syntax",
-    "description": "Support for HealthBot Rules and Playbooks",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.45.0"
-    },
-    "publisher": "vshashank",
-    "categories": [
-        "Programming Languages",
-        "Snippets"
+ "name": "healthbot",
+ "displayName": "vscode extension for HealthBot",
+ "description": "Extension adds syntax highlighting, auto-completion snippetx and syntax validation for HealthBot Rules and Playbooks",
+ "version": "0.0.1",
+ "engines": {
+  "vscode": "^1.43.0"
+ },
+ "publisher": "vshashank",
+ "categories": [
+  "Programming Languages",
+  "Snippets"
+ ],
+ "activationEvents": [
+  "onLanguage:HealthBot",
+  "onCommand:healthbot.validate"
+ ],
+ "main": "./client/out/extension",
+ "contributes": {
+  "languages": [
+   {
+    "id": "HealthBot",
+    "aliases": [
+     "HealthBot",
+     "rule"
     ],
-    "contributes": {
-        "languages": [{
-            "id": "HealthBot",
-            "aliases": ["HealthBot", "rule"],
-            "extensions": [".rule",".playbook"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "HealthBot",
-            "scopeName": "source.healthbot",
-            "path": "./syntaxes/rule.tmLanguage.json"
-        }],
-        "snippets": [
-            {
-              "language": "HealthBot",
-              "path": "./snippets/snippets.json"
-            }
-          ]
+    "extensions": [
+     ".rule",
+     ".playbook"
+    ],
+    "configuration": "./language-configuration.json"
+   }
+  ],
+  "grammars": [
+   {
+    "language": "HealthBot",
+    "scopeName": "source.healthbot",
+    "path": "./syntaxes/rule.tmLanguage.json"
+   }
+  ],
+  "snippets": [
+   {
+    "language": "HealthBot",
+    "path": "./snippets/snippets.json"
+   }
+  ],
+  "configuration": {
+   "type": "object",
+   "title": "HealthBot Configuration",
+   "properties": {
+    "healthbot.mgd": {
+     "scope": "application",
+     "type": "string",
+     "default": "healthbot_mgd:3.0.0",
+     "description": "MGD image to use for syntax validation"
     }
+   }
+  },
+  "menus": {
+   "commandPalette": [
+    {
+     "command": "healthbot.validate",
+     "when": "editorLangId == HealthBot"
+    }
+   ]
+  },
+  "commands": [
+   {
+    "command": "healthbot.validate",
+    "category": "HealthBot",
+    "title": "Validate HealthBot Rule",
+    "arguments": "ddd"
+   }
+  ]
+ },
+ "devDependencies": {
+  "@types/mocha": "^5.2.7",
+  "mocha": "^6.2.2",
+  "@types/node": "^12.12.0",
+  "eslint": "^6.4.0",
+  "@typescript-eslint/parser": "^2.3.0",
+  "typescript": "^3.9.4"
+ }
 }
