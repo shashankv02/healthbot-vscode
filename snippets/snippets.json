@@ -25,6 +25,20 @@
 
 		]
     },
+    "New Playbook": {
+		"scope": "",
+		"prefix": "healthbot",
+		"body": [
+			"healthbot {",
+			"\tplaybook ${1:playbook-name} {",
+            "\t\trules [${2:list of rules}];",
+            "\t\tdescription \"${3}\";",
+            "\t\tsynopsis \"${4}\";",
+            "\t}",
+            "}"
+		]
+    },
+
 
     "New iAgent Sensor": {
         "scope": "",

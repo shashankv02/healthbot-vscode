@@ -33,6 +33,9 @@
 			"include": "#rule"
 		},
 		{
+			"include": "#playbook"
+		},
+		{
 			"include": "#field"
 		},
 		{
@@ -210,6 +213,20 @@
 				}
 			}]
 		},
+		"playbook": {
+			"patterns": [{
+				"name": "meta.entity.name",
+				"match":  "\\b(playbook)\\s+(.*)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.other.healthbot"
+					},
+					"2": {
+						"name": "entity.name.type.playbook"
+					}
+				}
+			}]
+		},
 		"files": {
 			"patterns": [{
 				"name": "meta.entity.name",
@@ -260,9 +277,13 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.other.healthbot",
-				"match": "\\b(healthbot|rule-properties|supported-devices|juniper|status|constant|open-config|iAgent|snmp)\\b"
+				"match": "\\s+\\b(healthbot|rule-properties|supported-devices|juniper|status|constant|open-config|iAgent|snmp)\\b"
+			}, {
+				"name": "keyword.other.healthbot",
+				"match": "\\b(healthbot)\\b"
 			}]
 		},
+
 		"functions": {
 			"patterns": [{
 				"name": "support.function.healthbot",
@@ -277,7 +298,7 @@
 		},
 		"attributes": {
 			"name": "support.type.attribute-name",
-			"match": "^\\s*\\b(file|table-name|table|description|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message|list-of-files)\\b"
+			"match": "^\\s*\\b(file|table-name|table|description|rules|value|time-range|synopsis|path|type|frequency|sensor-name|keys|version|contributor|supported-healthbot-version|release-support|platform|color|message|list-of-files)\\b"
 		},
 		"strings": {
 			"name": "string.quoted.double.healthbot",
