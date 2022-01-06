@@ -1,7 +1,7 @@
 {
  "name": "healthbot",
- "displayName": "HealthBot",
- "description": "Extension adds syntax highlighting, auto-completion and syntax validation for HealthBot Rules and Playbooks",
+ "displayName": "HealthBot (Paragon Insights/Automation)",
+ "description": "Extension adds syntax highlighting, auto-completion and syntax validation for Paragon Insights(formerly HealthBot) Rules and Playbooks",
  "version": "0.0.5",
  "engines": {
   "vscode": "^1.43.0"
